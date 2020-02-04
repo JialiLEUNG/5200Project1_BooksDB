@@ -16,19 +16,20 @@ public class BooksPopulate {
         // name of the Books data file
         String fileName = "BooksData.txt";
 
+        // connect to database
+        Connection conn = getConnection();
+
+        // drop the database tables and recreate them below
+        dropTable(conn, dbTables);
+
+        // create tables
+        createTable(conn);
+
         // result set for queries
         try(
             // open up data file
             BufferedReader br = new BufferedReader(new FileReader(new File(fileName)));
 
-            // connect to database
-            Connection conn = getConnection();
-
-//            // drop the database tables and recreate them below
-//            dropTable(conn, dbTables);
-//
-//            // create tables
-//            createTable(conn);
 
             Statement stmt = conn.createStatement();
 
