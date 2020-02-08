@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class BooksPopulate {
     public static void main(String[] args) throws IOException {
-        // Four tables will be created by the current program:
+        // Four tables will be created in the current program:
         // Schema of the four tables can be seen in E/R diagram in the report.
         String dbTables[] = {
                 "Authors", "Titles", "Publishers", // entities
@@ -14,7 +14,7 @@ public class BooksPopulate {
         };
 
         // name of the Books data file
-        String fileName = "BooksData.txt";
+        String fileName = "src/BookData.txt";
 
         // connect to database
         Connection conn = getConnection();
@@ -30,32 +30,34 @@ public class BooksPopulate {
             // open up data file
             BufferedReader br = new BufferedReader(new FileReader(new File(fileName)));
 
-
             Statement stmt = conn.createStatement();
 
             // insert prepared statements
             PreparedStatement insertRow_Authors = conn.prepareStatement(
-                    "INSERT INTO Authors values(?,?,?)"
+                    "INSERT INTO Authors(authorID, firstName, lastName) values(?,?,?)"
             );  // The question marks mean that I know the query but I don't know the values
                 // The setString/ setInt methods below would fill out the values.
                 // authorID, firstName, lastName are the three attributes
             PreparedStatement insertRow_Publishers = conn.prepareStatement(
-                    "INSERT INTO Publishers values(?,?)"
+                    "INSERT INTO Publishers(publisherID, publisherName) values(?,?)"
             ); // publisherID, publisherName
             PreparedStatement insertRow_Titles = conn.prepareStatement(
-                    "INSERT INTO Titles values(?,?,?,?,?,?)"
-            );
+                    "INSERT INTO Titles(isbn, years, publisherID, price, title) values(?,?,?,?,?,?)"
+            ); // isbn, years, publisherID, price, title
             PreparedStatement insertRow_AuthorISBN = conn.prepareStatement(
-                    "INSERT INTO AuthorISBN values(?,?)"
-            );
+                    "INSERT INTO AuthorISBN(authorID, isbn) values(?,?)"
+            ) // authorID, isbn
         ) {
             // clear data from tables
             for (String tbl : dbTables){
                 try{
+                    // delete existing records in a table
+                    // delete all rows in a table without deleting the table.
+                    // The table structure, attributes, and indexes will be intact
                     stmt.executeUpdate("DELETE FROM " + tbl);
-                    System.out.println("Truncated table" + tbl + "succeeded");
+                    System.out.println("Deleting existing records in table" + tbl + " succeeded.");
                 } catch(SQLException e){
-                    System.err.println("Truncated table" + tbl + "failed.");
+                    System.err.println("Deleting existing records in table" + tbl + " failed.");
                 }
             }
 
@@ -64,12 +66,12 @@ public class BooksPopulate {
                 // The test file consists of tab delimited data, split the input row.
                 String[] rowArr = line.split("\t");
                 // The row is only valid
-                // when the attribute numbers are 9
-                // i.e., authorID, firstName, lastName, publisherID,publisherName, editionNumber, years, price, title, isbn,
-                if (rowArr.length != 9){
+                // when the attribute numbers are 10
+                // i.e., authorID, firstName, lastName, publisherID,publisherName, editionNumber, years, price, title, isbn
+                if (rowArr.length != 10){
                     continue;
                 }
-
+                // authorID	firstName	lastName	publisherID	publisherName	editionNO	year	price	title	isbn
                 /** get fields/values from rowArr for the Authors table */
                 int authorID = Integer.parseInt(rowArr[0]);
                 String firstName = rowArr[1];
@@ -80,9 +82,10 @@ public class BooksPopulate {
                     insertRow_Authors.setInt(1, authorID);
                     insertRow_Authors.setString(2, firstName);
                     insertRow_Authors.setString(3, lastName);
+                    insertRow_Authors.executeUpdate();
                 } catch(SQLException e){
                     // tuple already exists
-                    System.err.println(String.format("Already inserted authorID %d firstName %s lastName %s",
+                    System.err.println(String.format("Table Authors: Already inserted authorID %d firstName %s lastName %s",
                             authorID, firstName, lastName));
                 }
 
@@ -94,8 +97,9 @@ public class BooksPopulate {
                 try{
                     insertRow_Publishers.setInt(1, publisherID);
                     insertRow_Publishers.setString(2, publisherName);
+                    insertRow_Publishers.executeUpdate();
                 } catch(SQLException e){
-                    System.err.println(String.format("Already inserted publisherID %d publisherName %s", publisherID, publisherName));
+                    System.err.println(String.format("Table Publishers: Already inserted publisherID %d publisherName %s", publisherID, publisherName));
                 }
 
                 /** get values from rowArr for the Titles table */
@@ -110,8 +114,9 @@ public class BooksPopulate {
                     insertRow_Titles.setInt(3, publisherID);
                     insertRow_Titles.setFloat(4, price);
                     insertRow_Titles.setString(5, title);
+                    insertRow_Titles.executeUpdate();
                 } catch(SQLException e){
-                    System.err.println(String.format("Already inserted editionName %d years %s publisherID %d price %f title %s",
+                    System.err.println(String.format("Table Titles: Already inserted editionName %d years %s publisherID %d price %f title %s",
                             editionName, years, publisherID, price, title));
                 }
 
@@ -121,15 +126,13 @@ public class BooksPopulate {
                 try{
                     insertRow_AuthorISBN.setInt(1, authorID);
                     insertRow_AuthorISBN.setString(2, isbn);
-
+                    insertRow_AuthorISBN.executeUpdate();
                 } catch (SQLException e){
-                    System.err.println(String.format("Already inserted authorID %d isbn %s",
+                    System.err.println(String.format("Table AuthorISBN: Already inserted authorID %d isbn %s",
                             authorID, isbn));
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e){
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -199,7 +202,7 @@ public class BooksPopulate {
                             "editionNumber int NOT NULL," +
                             "years CHAR(4) NOT NULL," +
                             "publisherID int NOT NULL," +
-                            "price Number(8, -2) NOT NULL," +
+                            "price NUMERIC (8, 2) NOT NULL," +
                             "title varchar(500) NOT NULL," +
                             "PRIMARY KEY(isbn)," +
                             "FOREIGN KEY(publisherID) REFERENCES Publishers(publisherID))");
@@ -226,7 +229,7 @@ public class BooksPopulate {
 
     // post information
     public static void post(Connection conn){
-        final String var1 = "john";
+        final String var1 = "John";
         final String var2 = "Miller";
         try{
             PreparedStatement posted = conn.prepareStatement("INSERT INTO testIDtable(first, last) " +

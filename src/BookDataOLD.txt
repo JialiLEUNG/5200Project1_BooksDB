@@ -1,0 +1,40 @@
+1	John	Miller	1	Penguin Random House	1	1990	10	AI	10001
+2	Mary	Smith	2	Hachette Livre	2	2000	10	Math	10002
+3	Tom	Smith	4	HarperCollins. 	1	1990	20	English	20009
+4	Christ	Johnson	5	Macmillan Publishers	1	1990	10	Science	30000
+5	Zack	Williams	3	Simon & Schuster	1	1990	10	Information Technology	20005
+6	Mike	Brown	6	Pearson Education. ...	2	1990	10	love	40001
+7	Daniel	Jones	6	Scholastic. ...	1	2000	20	Flower	40002
+8	Anthony	Miller	7	Cengage Learning	1	1990	20	Agriculture	40003
+9	Terence	Davis	1	Penguin Random House	1	1990	10	AI	10001
+10	Leslie	Wilson	5	Macmillan Publishers	2	2000	10	Women	40004
+11	Araon	Wang	2	Hachette Livre	2	2000	10	Math	10002
+12	Monica	Devi	2	Hachette Livre	3	1990	10	Archetechture	40005
+13	Bryan	Zhang	4	HarperCollins. 	1	2000	15	Crime	40006
+14	John	Li	2	Hachette Livre	2	1990	2	Mars	50006
+15	Mike	Liu	5	Macmillan Publishers	3	1990	3	Mars	50007
+16	Emily	Singh	6	Scholastic. ...	3	1990	2	Mars	50008
+17	Rick	Yang	7	Cengage Learning	1	1990	20	Nature	50009
+18	Daniel	Kumar	3	Simon & Schuster	3	1990	10	Medicine	60000
+19	Sally	Wu	1	Penguin Random House	2	1990	3	Movie	10005
+20	Tom	Xu	7	Cengage Learning	1	2000	45	Sierra	60001
+21	William	Miller	4	HarperCollins. 	1	1990	3	Movie	10006
+22	Walton	Brown	3	Simon & Schuster	1	1990	10	Information Technology	20005
+23	Shawn	Smith	2	Hachette Livre	2	1990	10	Math	20003
+24	John	Miller	1	Penguin Random House	2	2009	20	AI	70001
+25	Bryan	Zhang	4	HarperCollins. 	1	2000	15	Action	80000
+26	Tom	Smith	4	HarperCollins. 	1	1990	20	SQL	90000
+27	Terence	Davis	7	Cengage Learning	1	1990	10	AI	40009
+28	Walton	Brown	7	Cengage Learning	1	2000	45	Sierra	60001
+29	Walton	Brown	3	Simon & Schuster	1	1990	10	Information Technology	20006
+30	Shawn	Smith	2	Hachette Livre	2	1990	10	Math	20003
+31	Sally	Wu	3	Simon & Schuster	3	1990	10	Medicine	60000
+32	Christ	Johnson	5	Macmillan Publishers	1	1990	10	Sports	80008
+33	Wihite	Black	1	Penguin Random House	1	1990	10	AI	10001
+34	Tom	Williams	7	Cengage Learning	1	2000	45	Sierra	60001
+35	Robert	Times	5	Macmillan Publishers	1	1990	10	Sports	80008
+36	Mike	Brown	6	Pearson Education. ...	2	1990	10	Computer	70008
+37	Mike	Brown	1	Penguin Random House	2	1990	10	love	80009
+38	Janet	Li	2	Hachette Livre	2	1990	2	Mars	50006
+39	John	Black	2	Hachette Livre	2	1990	2	Mars	50006
+40	Christ	Johnson	5	Macmillan Publishers	1	1990	3	Mars	90000
