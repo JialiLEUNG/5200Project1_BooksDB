@@ -8,7 +8,7 @@
 6	Yuri	Gurevich	2	ACM	1	1990	18	Inverse privacy	52913308
 7	Efim	Hudis	2	ACM	1	1990	18	Inverse privacy	52913308
 8	Jeannette	Wing	2	ACM	1	1990	18	Inverse privacy	52913308
-9	Tekla,	Perry	1	IEEE	3	2003	48	AR: Forget the Glasses	52283434
+9	Tekla	Perry	1	IEEE	3	2003	48	AR: Forget the Glasses	52283434
 10	Mark	Coeckelbergh	1	IEEE	3	2003	12	Can We Trust Robots?	95761002
 11	Jeffrey	Voas	1	IEEE	1	2010	23	Human Tagging	40941369
 12	Nir	Kshetri	1	IEEE	1	2010	23	Human Tagging	40941369
