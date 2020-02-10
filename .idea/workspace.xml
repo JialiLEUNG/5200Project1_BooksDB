@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c908415-92c6-4869-8dd6-a1af67859e4d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Project1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ReportOnProject1_BookDatabase.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReportOnProject1_BookDatabase.pdf" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,8 +49,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Book.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="9115">
-                  <caret line="608" column="35" lean-forward="true" selection-start-line="608" selection-start-column="35" selection-end-line="608" selection-end-column="35" />
+                <state relative-caret-position="145">
+                  <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                     <element signature="imports" expanded="true" />
@@ -65,7 +66,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/BookDataNEW.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="189">
+                <state relative-caret-position="300">
                   <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="41" />
                 </state>
               </provider>
@@ -118,10 +119,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="18" />
+    <option name="x" value="67" />
     <option name="y" value="23" />
-    <option name="width" value="1422" />
-    <option name="height" value="877" />
+    <option name="width" value="1373" />
+    <option name="height" value="812" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -222,18 +223,18 @@
       <option name="presentableId" value="Default" />
       <updated>1580707301553</updated>
       <workItem from="1580707306993" duration="2414000" />
-      <workItem from="1580754770386" duration="62244000" />
+      <workItem from="1580754770386" duration="62595000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64658000" />
+    <option name="totallyTimeSpent" value="65009000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="23" width="1422" height="877" extended-state="0" />
+    <frame x="67" y="23" width="1373" height="812" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12246377" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1269722" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -242,7 +243,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.17324841" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.17324841" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -250,7 +251,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3299363" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3299363" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.35972223" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3299363" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -327,7 +328,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BookDataNEW.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="300">
           <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="41" />
         </state>
       </provider>
@@ -355,8 +356,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Book.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9115">
-          <caret line="608" column="35" lean-forward="true" selection-start-line="608" selection-start-column="35" selection-end-line="608" selection-end-column="35" />
+        <state relative-caret-position="145">
+          <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
