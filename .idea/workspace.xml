@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c908415-92c6-4869-8dd6-a1af67859e4d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Book.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,7 +15,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5773286">
+    <splitter split-orientation="horizontal" split-proportion="0.7460457">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -39,12 +39,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/BooksPopulate.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="144">
-                  <caret line="8" column="18" lean-forward="true" selection-end-line="766" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                    <element signature="imports" expanded="true" />
-                  </folding>
+                <state relative-caret-position="180">
+                  <caret line="10" column="27" lean-forward="true" selection-end-line="766" />
                 </state>
               </provider>
             </entry>
@@ -52,8 +48,12 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Book.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="17" selection-start-column="17" selection-end-column="17" />
+                <state relative-caret-position="12694">
+                  <caret line="577" column="47" selection-start-line="577" selection-start-column="47" selection-end-line="577" selection-end-column="47" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -99,6 +99,7 @@
       <find>query</find>
       <find>Query 4</find>
       <find>books</find>
+      <find>datanew</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -112,13 +113,14 @@
         <option value="$PROJECT_DIR$/src/BookData.txt" />
         <option value="$PROJECT_DIR$/src/BookDataNEW.txt" />
         <option value="$PROJECT_DIR$/src/BooksPopulate.java" />
+        <option value="$PROJECT_DIR$/src/Book.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="18" />
     <option name="y" value="23" />
-    <option name="width" value="1349" />
+    <option name="width" value="1422" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -220,18 +222,18 @@
       <option name="presentableId" value="Default" />
       <updated>1580707301553</updated>
       <workItem from="1580707306993" duration="2414000" />
-      <workItem from="1580754770386" duration="58287000" />
+      <workItem from="1580754770386" duration="59218000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60701000" />
+    <option name="totallyTimeSpent" value="61632000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="23" width="1349" height="877" extended-state="0" />
+    <frame x="18" y="23" width="1422" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12930375" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12246377" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -248,7 +250,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3299363" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3299363" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3299363" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3299363" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -346,19 +348,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BooksPopulate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="18" lean-forward="true" selection-end-line="766" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="10" column="27" lean-forward="true" selection-end-line="766" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Book.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        <state relative-caret-position="12694">
+          <caret line="577" column="47" selection-start-line="577" selection-start-column="47" selection-end-line="577" selection-end-column="47" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
