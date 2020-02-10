@@ -31,8 +31,8 @@
 23	Kyle	Banker	7	Arxis	2	2021	45	MongoDB in Action	63060350
 24	Janet	Li	2	Oxford	2	1990	2	JavaScript: The Good Parts	50006999
 25	John	Black	2	Oxford	2	1990	2	JavaScript: The Good Parts	50006999
-26	Mike	Brown	8	Pearson Education. ...	2	2018	109	JavaScript Web Applications	70008898
-27	Mike	Davis	8	Pearson Education. ...	2	2018	109	JavaScript Web Applications	70008898
+26	Mike	Brown	8	Pearson Education	2	2018	109	JavaScript Web Applications	70008898
+27	Mike	Davis	8	Pearson Education	2	2018	109	JavaScript Web Applications	70008898
 28	Stoyan	Stefanov	9	AAC	5	2019	89	JavaScript Patterns	71208898
 29	Tom	Williams	10	Cengage Learning	1	2000	45	High Sierra	60001000
 30	Bryan	Zhang	11	HarperCollins. 	1	2000	15	SQL in Action	80322200

@@ -1,4 +1,6 @@
-import com.mysql.cj.protocol.Resultset;
+/**
+ * The sample book data is stored in a tab-separated data file called BookDataNew
+ */
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -71,11 +73,10 @@ public class BooksPopulate {
                 String[] rowArr = line.split("\t");
                 // The row is only valid
                 // when the attribute numbers are 10
-                // i.e., authorID, firstName, lastName, publisherID,publisherName, editionNumber, years, price, title, isbn
+                // i.e., authorID, firstName, lastName, publisherID, publisherName, editionNumber, years, price, title, isbn
                 if (rowArr.length != 10){
                     continue;
                 }
-                // authorID	firstName	lastName	publisherID	publisherName	editionNO	year	price	title	isbn
                 /** get fields/values from rowArr for the Authors table */
                 int authorID = Integer.parseInt(rowArr[0]);
                 String firstName = rowArr[1];
@@ -133,6 +134,7 @@ public class BooksPopulate {
 //                     throw new Exception(e.getMessage());
                 }
 
+
                 /** get values from rowArr for the AuthorISBN table */
                 // add AuthorISBN tuple if does not exist
                 try{
@@ -146,39 +148,73 @@ public class BooksPopulate {
                 }
             }
 
-            // Print the articles that are published after 2000 in the Titles table
-            System.out.println("=============== articles published after 2000 in table Titles================");
-            getArticleAfter2000(stmt);
-            // Print the articles that are published by the same publisher.
-//            getArticleByPublisher(stmt);
-            // order book by price in table Titles
-            System.out.println("=============== order book by price in table Titles ================");
-            orderBookByPrice(stmt);
+//            // Print the articles that are published after 2000 in the Titles table
+//            System.out.println("=============== articles published after 2000 in table Titles================");
+//            getArticleAfter2000(stmt);
+//            // Print the articles that are published by the same publisher.
+////            getArticleByPublisher(stmt);
+//            // order book by price in table Titles
+//            System.out.println("=============== order book by price in table Titles ================");
+//            orderBookByPrice(stmt);
+//
+//            // count the number of books by publisherID in table Titles
+//            System.out.println("=============== count the number of books by publisher in table Titles ================");
+//            countISBNbyPublisher(stmt);
+//
+//            // books start with 'Harry Potter'
+//            System.out.println("=============== books whose title starts with 'Harry Potter' in table Titles ================");
+//            bookStartByHarryPotter(stmt);
+//
+//
+//            // find authors of 'Bitcoin's Academic Pedigree'
+//            System.out.println("=============== authors of 'Bitcoin's Academic Pedigree' ================");
+//            findAuthorByBookTitle(stmt);
+//
+//            // find the book written by Neil Savage
+//            System.out.println("=============== find Neil Savage's book ================");
+//            findNeilSavageBooks(stmt);
+//
+//            // average price by each publisher
+//            System.out.println("=============== calculate average price by each publisher ==================");
+//            avgPriceByPublisher(stmt);
 
-            // count the number of books by publisherID in table Titles
-            System.out.println("=============== count the number of books by publisher in table Titles ================");
-            countISBNbyPublisher(stmt);
+            //
+            orderAuthorName(stmt);
 
-            // books start with 'Harry Potter'
-            System.out.println("=============== books whose title starts with 'Harry Potter' in table Titles ================");
-            bookStartByHarryPotter(stmt);
+            getAllPublisher(stmt);
+
+            booksByPublisher(stmt);
+
+            // Add new Author: John Miller
+            insertAuthor(conn);
+            insertAuthorOK(stmt); // check if new author insert succeeds by using select statement
 
 
-            // find authors of 'Bitcoin's Academic Pedigree'
-            System.out.println("=============== authors of 'Bitcoin's Academic Pedigree' ================");
-            findAuthorByBookTitle(stmt);
+            // Edit/Update the existing information about an author
+            // change John Miller into Mary Johnson
+            editAuthor(conn);
+            editAuthorOK(stmt);
 
-            // find the book written by Neil Savage
-            System.out.println("=============== find Neil Savage's book ================");
-            findNeilSavageBooks(stmt);
+            // Add a new title for an author (Here I update the entire row)
+            // For the following parameterIndex: editionNumber, years, publisherID, price, title, isbn
+            addTitle(conn);
 
-            // average price by each publisher
-            System.out.println("=============== calculate average price by each publisher ==================");
-            avgPriceByPublisher(stmt);
+            // Add new publisher
+            addPublisher(conn);
+            addPublisherOK(stmt);
+
+
+            // Edit/Update the existing information about a publisher
+            editPublishers(conn);
+            editPublisherOK(stmt);
+
+
 
         } catch (IOException | SQLException e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
+        } finally{
+            conn.close();
         }
     }
 
@@ -295,7 +331,7 @@ public class BooksPopulate {
     // getArticleAfter2000 prints the articles that are published after 2000 in the Titles table
     public static void getArticleAfter2000(Statement stmt) throws SQLException {
         // result set for queries
-        ResultSet rs = null;
+        ResultSet rs;
         try{
             rs = stmt.executeQuery("" +
                     "SELECT title, years " +
@@ -465,6 +501,265 @@ public class BooksPopulate {
             e.printStackTrace();
         }
     }
+
+
+    public static void orderAuthorName(Statement stmt) throws Exception{
+        ResultSet rs = null;
+        try{
+            rs = stmt.executeQuery("" +
+                    "SELECT * " +
+                    "FROM Authors " +
+                    "ORDER BY LastName, firstName ASC");
+            System.out.println();
+            System.out.println("========== Query 1: Order by last name and first name in ascending order =========");
+
+            String leftAlignFormat = "| %-9s | %-12s | %-12s|%n";
+
+            System.out.format("+-----------+--------------+-------------+%n");
+            System.out.format("| authorID  | first name   | last name   |%n");
+            System.out.format("+-----------+--------------+-------------+%n");
+            while (rs.next()){
+                int authorID = rs.getInt(1);
+                String firstName = rs.getString(2);
+                String lastName = rs.getString(3);
+                System.out.format(leftAlignFormat,authorID, firstName, lastName);
+            }
+            System.out.format("+-----------+--------------+-------------+%n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * find all publishers from the publisher table
+     */
+    public static void getAllPublisher(Statement stmt) throws Exception{
+        ResultSet rs = null;
+        try{
+            rs = stmt.executeQuery("" +
+                    "SELECT publisherName " +
+                    "FROM Publishers ");
+            System.out.println();
+            System.out.println("========== Query 2: find all publishers from the publisher table =========");
+
+            String leftAlignFormat = "| %-25s |%n";
+
+            System.out.format("+---------------------------+%n");
+            System.out.format("| publisherName             |%n");
+            System.out.format("+---------------------------+%n");
+            while (rs.next()){
+                String publisherName = rs.getString(1);
+                System.out.format(leftAlignFormat,publisherName);
+            }
+            System.out.format("+---------------------------+%n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Select a specific publisher and list all books published by that publisher.
+     * Include the title, year and ISBN number. Order the information alphabetically
+     * by title
+     * @param stmt
+     * @throws Exception
+     */
+
+    //select title, years, isbn
+    //from Titles, Publishers
+    //where Titles.publisherID = Publishers.publisherID AND Publishers.publisherName = 'IEEE'
+    //order by Titles.title ASC
+
+    public static void booksByPublisher(Statement stmt) throws Exception{
+        ResultSet rs;
+        try{
+            rs = stmt.executeQuery("" +
+                    "SELECT Titles.title, Titles.years, Titles.isbn " +
+                    "FROM Titles, Publishers " +
+                    "WHERE Titles.publisherID = Publishers.publisherID AND Publishers.publisherName = 'IEEE' " +
+                    "ORDER BY Titles.title ASC");
+            System.out.println();
+            System.out.println("========== Query 3: Order by last name and first name in ascending order =========");
+
+            String leftAlignFormat = "| %-30s | %-12s | %-12s|%n";
+
+            System.out.format("+--------------------------------+--------------+-------------+%n");
+            System.out.format("| title                          | year         | isbn        |%n");
+            System.out.format("+--------------------------------+--------------+-------------+%n");
+            while (rs.next()){
+                String title = rs.getString(1);
+                int year = rs.getInt(2);
+                int isbn = rs.getInt(3);
+                System.out.format(leftAlignFormat,title, year, isbn);
+            }
+            System.out.format("+--------------------------------+--------------+-------------+%n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Add new Author
+    public static void insertAuthor(Connection conn){
+        final String first = "John";
+        final String last = "Miller";
+        try{
+            PreparedStatement posted = conn.prepareStatement("INSERT INTO Authors(firstName, lastName) " +
+                    "values ('" + first + "','" + last + "')"); // single quote for string
+            posted.executeUpdate();
+        } catch(Exception e){
+            System.out.println(e);
+        } finally{
+            System.out.println();
+        }
+    }
+
+
+    public static void insertAuthorOK(Statement stmt) throws Exception{
+        ResultSet rs;
+        try{
+            rs = stmt.executeQuery("" +
+                    "SELECT * " +
+                    "FROM Authors " +
+                    "WHERE authorID = 37 AND firstName = 'John' AND lastName = 'Miller' ;");
+            System.out.println();
+            while (rs.next()){
+                System.out.println("========== Query 4: New Author inserted: [Author ID: +" + rs.getInt(1) +
+                        ", first name: " + rs.getString(2) +
+                        ", last name: " + rs.getString(3) +
+                        "] =========");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Edit/Update the existing information about an author
+     */
+    public static void editAuthor(Connection conn){
+        try{
+            PreparedStatement posted1 = conn.prepareStatement("UPDATE Authors, AuthorISBN " +
+                    "SET Authors.firstName = 'Mary', Authors.lastName = 'Johnson' " +
+                    "WHERE Authors.authorID = 37 AND Authors.firstName = 'John' AND lastName = 'Miller' ;"); // single quote for string
+            posted1.executeUpdate();
+
+        } catch(Exception e){
+            System.out.println(e);
+        } finally{
+//            System.out.println("John Miller changed into Mary Johnson");
+        }
+    }
+
+    public static void editAuthorOK(Statement stmt) throws Exception{
+        ResultSet rs;
+        try{
+            rs = stmt.executeQuery("" +
+                    "SELECT * " +
+                    "FROM Authors " +
+                    "WHERE authorID = 37 ;");
+            System.out.println();
+            if (rs.next()){
+                System.out.println("========== Query 5: Edit author name: Change John Miller into Mary Johnson. \n" +
+                        "Result after edits: [Author ID: +" + rs.getInt(1) +
+                        ", first name is Mary: " + rs.getString(2).equals("Mary") +
+                        ", last name is Johnson: " + rs.getString(3).equals("Johnson") +
+                        "] ========= \n");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addTitle(Connection conn){
+        try{
+            PreparedStatement insertRow_Titles = conn.prepareStatement(
+                    "INSERT INTO Titles(editionNumber, years, publisherID, price, title, isbn) values(?,?,?,?,?,?)"
+            );
+
+            insertRow_Titles.setInt(1, 1);
+            insertRow_Titles.setString(2, "1993");
+            insertRow_Titles.setInt(3, 5);
+            insertRow_Titles.setFloat(4, 55);
+            insertRow_Titles.setString(5, "Marching Band");
+            insertRow_Titles.setString(6, "12345678");
+            insertRow_Titles.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void addPublisher(Connection conn){
+        String publisherName = "Johnson and Johnson";
+        try{
+
+            PreparedStatement post = conn.prepareStatement(
+                    "INSERT INTO Publishers(publisherName) values('" + publisherName + "')"
+            );
+            post.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addPublisherOK(Statement stmt) throws Exception{
+        ResultSet rs;
+        try{
+            rs = stmt.executeQuery("" +
+                    "SELECT * " +
+                    "FROM Publishers " +
+                    "WHERE publisherID = 17 AND publisherName = 'Johnson and Johnson' ;");
+            System.out.println();
+            while (rs.next()){
+                System.out.println("========== Query 6: New publisher added: [publisher ID: +" + rs.getInt(1) +
+                        ", publisher name: " + rs.getString(2) +
+                        "] =========");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public static void editPublishers(Connection conn){
+        try{
+            System.out.println("Update the existing information about a publisher: Change Johnson and Johnson into Johnson and Thompson");
+            PreparedStatement posted = conn.prepareStatement("UPDATE Publishers " +
+                    "SET publisherName = 'Johnson and Thompson' " +
+                    "WHERE publisherID = 17 ;");
+            posted.executeUpdate();
+        } catch(Exception e){
+            System.out.println(e);
+        } finally{
+            System.out.println();
+        }
+    }
+
+    public static void editPublisherOK(Statement stmt) throws Exception{
+        ResultSet rs;
+        try{
+            rs = stmt.executeQuery("" +
+                    "SELECT * " +
+                    "FROM Publishers " +
+                    "WHERE publisherID = 17 AND publisherName = 'Johnson and Thompson' ;");
+            System.out.println();
+            if (rs.next()){
+                System.out.println("========== Query 7: Edit publisher: Change Johnson and Johnson into Johnson and Thompson. \n" +
+                        "Result after edits: [publisher ID: +" + rs.getInt(1) +
+                        ", publisher name is Johnson and Thompson: " + rs.getString(2).equals("Johnson and Thompson") +
+                        "] =========");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 
 
