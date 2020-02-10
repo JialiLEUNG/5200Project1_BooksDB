@@ -1,5 +1,9 @@
 /**
- * The sample book data is stored in a tab-separated data file called BookDataNew
+ *The current project implements the basic functionalities of MySql database
+ * and SELECT statements for storing books.
+ * The focus is on implementing a book database, populating it,
+ * and then executing different SQL statements to query or manipulate the Books database.
+ * I used MySQL Workbench to be a graphical tool for working with MySQL servers and the Book database.
  */
 
 import java.io.BufferedReader;
@@ -17,8 +21,10 @@ public class Book {
                 "Authors", "Titles", "Publishers" // entities
         };
 
+
+        // The sample book data is stored in a tab-separated data file called BookDataNew
         // name of the Books data file
-        String fileName = "src/BookDataNEW.txt";
+        String fileName = "/Users/hcloud/Desktop/Jiali/NEU/courses/5200_Database_Management_System/2020Spring/project/project1/src/BookDataNEW.txt";
 
         // connect to database
         Connection conn = getConnection();
@@ -29,8 +35,8 @@ public class Book {
         // create tables
         createTable(conn);
 
-        // Initialize the different tables (at least 15 entries per table) appropriately: all
-        // fields cannot be null.
+        // Initialize the different tables (at least 15 entries per table) appropriately
+        // All fields cannot be null.
         try(
                 // open up data file
                 BufferedReader br = new BufferedReader(new FileReader(new File(fileName)));
@@ -145,10 +151,13 @@ public class Book {
                 }
             }
 
+            // The following queries
+
             /**
              * Select all authors from the authors table. Order the information
              * alphabetically by the author’s last name and first name
              */
+            System.out.println("========== Query 1: Order by last name and first name in ascending order =========");
             orderAuthorName(stmt);
 
             /**
@@ -157,11 +166,13 @@ public class Book {
             getAllPublisher(stmt);
 
             /**
-             * Select a specific publisher and list all books published by that publisher.
-             * Include the title, year and ISBN number. Order the information alphabetically
+             * Select a specific publisher ('IEEE' in the current query)
+             * and list all books published by that publisher.
+             * Include the title, year and ISBN number.
+             * Order the information alphabetically
              * by title
              */
-            booksByPublisher(stmt);
+            booksByPublisher(stmt, "IEEE");
 
             /**
              * Add new Author named John Miller
@@ -184,6 +195,7 @@ public class Book {
              *  editionNumber, years, publisherID, price, title, isbn
              */
             addTitle(conn);
+            printTitles(stmt);
 
             /**
              * Add new publisher
@@ -208,7 +220,7 @@ public class Book {
 
     public static Connection getConnection() throws Exception {
         try{
-            // The connection URL for the mysql database is jdbc:mysql://localhost:3306/Books
+            // The connection URL for the mysql database is jdbc:mysql://localhost:3306/sys
             // where jdbc is the API,
             // mysql is the database,
             // localhost is the server name on which mysql is running,
@@ -218,7 +230,7 @@ public class Book {
             // We may use any database, in such case, we need to replace the Books with our database name.
             String url = "jdbc:mysql://localhost:3306/sys";
             String username = "root"; // The default username for the mysql database is root.
-            String password = "Waihanc@0";
+            String password = "abcdefg123";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url, username, password); // return instance of Connection.
@@ -324,7 +336,6 @@ public class Book {
                     "FROM Authors " +
                     "ORDER BY LastName, firstName ASC");
             System.out.println();
-            System.out.println("========== Query 1: Order by last name and first name in ascending order =========");
 
             String leftAlignFormat = "| %-9s | %-12s | %-12s|%n";
 
@@ -379,16 +390,17 @@ public class Book {
      */
 
 
-    public static void booksByPublisher(Statement stmt) throws Exception{
+    public static void booksByPublisher(Statement stmt, String publisher) throws Exception{
         ResultSet rs;
         try{
             rs = stmt.executeQuery("" +
                     "SELECT Titles.title, Titles.years, Titles.isbn " +
                     "FROM Titles, Publishers " +
-                    "WHERE Titles.publisherID = Publishers.publisherID AND Publishers.publisherName = 'IEEE' " +
+                    "WHERE Titles.publisherID = Publishers.publisherID AND Publishers.publisherName = '"+ publisher +"' " +
                     "ORDER BY Titles.title ASC");
             System.out.println();
-            System.out.println("========== Query 3: Order by last name and first name in ascending order =========");
+            System.out.println("========== Query 3: Select a specific publisher ('IEEE' in the current query) and list all books published by that publisher.\n" +
+                    "Include the title, year and ISBN number. Order by last name and first name in ascending order =========");
 
             String leftAlignFormat = "| %-30s | %-12s | %-12s|%n";
 
@@ -445,6 +457,8 @@ public class Book {
                         "] =========");
             }
 
+            orderAuthorName(stmt);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -486,6 +500,7 @@ public class Book {
                         ", last name is Johnson: " + rs.getString(3).equals("Johnson") +
                         "] ========= \n");
             }
+            orderAuthorName(stmt);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -513,6 +528,35 @@ public class Book {
             e.printStackTrace();
         }
     }
+
+    public static void printTitles(Statement stmt) throws Exception{
+        ResultSet rs;
+        try{
+            rs = stmt.executeQuery("" +
+                    "SELECT title, years, isbn " +
+                    "FROM Titles " +
+                    "ORDER BY title ASC");
+            System.out.println();
+            System.out.println("========== Query 6: Print Titles table (3 columns only: title, year, isbn)." +
+                    "Order by last name and first name in ascending order =========");
+
+            String leftAlignFormat = "| %-60s | %-12s | %-12s|%n";
+
+            System.out.format("+--------------------------------------------------------------+--------------+-------------+%n");
+            System.out.format("| title                                                        | year         | isbn        |%n");
+            System.out.format("+--------------------------------------------------------------+--------------+-------------+%n");
+            while (rs.next()){
+                String title = rs.getString(1);
+                int year = rs.getInt(2);
+                int isbn = rs.getInt(3);
+                System.out.format(leftAlignFormat,title, year, isbn);
+            }
+            System.out.format("+--------------------------------------------------------------+--------------+-------------+%n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * add a publisher into Publishers table
@@ -545,7 +589,7 @@ public class Book {
                     "WHERE publisherID = 17 AND publisherName = 'Johnson' ;");
             System.out.println();
             while (rs.next()){
-                System.out.println("========== Query 6: New publisher added: [publisher ID: +" + rs.getInt(1) +
+                System.out.println("========== Query 7: New publisher added: [publisher ID: +" + rs.getInt(1) +
                         ", publisher name: " + rs.getString(2) +
                         "] =========");
             }
@@ -558,11 +602,11 @@ public class Book {
 
     /**
      * edit publisher name.
+     * Update the existing information about a publisher: Change Johnson into Thompson
      * @param conn
      */
     public static void editPublishers(Connection conn){
         try{
-            System.out.println("Update the existing information about a publisher: Change Johnson into Thompson");
             PreparedStatement posted = conn.prepareStatement("UPDATE Publishers " +
                     "SET publisherName = 'Thompson' " +
                     "WHERE publisherID = 17 ;");
@@ -588,7 +632,7 @@ public class Book {
                     "WHERE publisherID = 17 AND publisherName = 'Thompson' ;");
             System.out.println();
             if (rs.next()){
-                System.out.println("========== Query 7: Edit publisher: Change Johnson into Thompson. \n" +
+                System.out.println("========== Query 8: Edit publisher: Change Johnson into Thompson. \n" +
                         "Result after edits: [publisher ID: +" + rs.getInt(1) +
                         ", publisher name is Thompson: " + rs.getString(2).equals("Thompson") +
                         "] =========");
