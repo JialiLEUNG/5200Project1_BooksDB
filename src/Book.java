@@ -4,6 +4,18 @@
  * The focus is on implementing a book database, populating it,
  * and then executing different SQL statements to query or manipulate the Books database.
  * I used MySQL Workbench to be a graphical tool for working with MySQL servers and the Book database.
+ *
+ * To run the Book.java, please include the classpath of the mysql connector jar before typing Book.java,
+ * and then add the following four arguments: <File pathname> <The connection URL for the mysql database> <mysql username> <mysql password>
+ * Specifically,
+ * The 1st argument is to put the file path of BookDataNEW.txt;
+ * The 2nd argument is the connection URL for the mysql database;
+ * The 3rd argument is your username of the mysql database in order to connect to the MySQL server;
+ * The 4th argument is your password of the mysql database
+ * For example, in your console, type the following:
+ * java -classpath ~/Downloads/mysql-connector-java-8.0.19.jar Book.java /Users/hcloud/Desktop/Jiali/NEU/courses/5200_Database_Management_System/2020Spring/project/project1/src/BookDataNEW.txt jdbc:mysql://localhost:3306/sys root abc123
+ * I have included the connector jar in the same directory of Book.java.
+ * Please specify the pathname of the jar.
  */
 
 import java.io.BufferedReader;
@@ -24,10 +36,20 @@ public class Book {
 
         // The sample book data is stored in a tab-separated data file called BookDataNew
         // name of the Books data file
-        String fileName = "/Users/hcloud/Desktop/Jiali/NEU/courses/5200_Database_Management_System/2020Spring/project/project1/src/BookDataNEW.txt";
+        if(args.length != 4){
+            return;
+        }
+
+        // "/Users/hcloud/Desktop/Jiali/NEU/courses/5200_Database_Management_System/2020Spring/project/project1/src/BookDataNEW.txt"
+        String fileName = args[0];
+
+        // username and password
+        String url = args[1]; // jdbc:mysql://localhost:3306/sys
+        String username = args[2]; // root
+        String password = args[3];
 
         // connect to database
-        Connection conn = getConnection();
+        Connection conn = getConnection(url, username, password);
 
         // drop the database tables and recreate them below
         dropTable(conn, dbTables);
@@ -218,7 +240,7 @@ public class Book {
         }
     }
 
-    public static Connection getConnection() throws Exception {
+    public static Connection getConnection(String url, String username, String password) throws Exception {
         try{
             // The connection URL for the mysql database is jdbc:mysql://localhost:3306/sys
             // where jdbc is the API,
@@ -228,9 +250,13 @@ public class Book {
             // 3306 is the port number and
             // Books is the database name.
             // We may use any database, in such case, we need to replace the Books with our database name.
-            String url = "jdbc:mysql://localhost:3306/sys";
-            String username = "root"; // The default username for the mysql database is root.
-            String password = "abcdefg123";
+
+//            String url = "jdbc:mysql://localhost:3306/sys";
+//            String username = "root"; // The default username for the mysql database is root.
+//            String password = "Waihanc@0";
+            url = "jdbc:mysql://localhost:3306/sys";
+            username = "root"; // The default username for the mysql database is root.
+            password = "Waihanc@0";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url, username, password); // return instance of Connection.

@@ -1,0 +1,44 @@
+1	Devon	O'Dell	2	ACM	2	2009	10	The Debugging Mindset	12347662
+2	Arvind	Narayanan	2	ACM	2	2009	35	Bitcoin's Academic Pedigree	44791234
+3	Jeremy	Clark	2	ACM	2	2009	35	Bitcoin's Academic Pedigree	44791234
+4	Neil	Savage	2	ACM	1	1990	27	More than a Mouse	48070916
+4	Neil	Savage	2	ACM	1	1990	10	Graph matching theory/practice	48071916
+5	Vinton	Cerf	2	ACM	1	1990	12	The power of big ideas	60903736
+5	Vinton	Cerf	2	ACM	1	1990	12	What is a Robot?	60904736
+6	Yuri	Gurevich	2	ACM	1	1990	18	Inverse privacy	52913308
+7	Efim	Hudis	2	ACM	1	1990	18	Inverse privacy	52913308
+8	Jeannette	Wing	2	ACM	1	1990	18	Inverse privacy	52913308
+9	Tekla	Perry	1	IEEE	3	2003	48	AR: Forget the Glasses	52283434
+10	Mark	Coeckelbergh	1	IEEE	3	2003	12	Can We Trust Robots?	95761002
+11	Jeffrey	Voas	1	IEEE	1	2010	23	Human Tagging	40941369
+12	Nir	Kshetri	1	IEEE	1	2010	23	Human Tagging	40941369
+11	Jeffrey	Voas	1	IEEE	2	2010	24	Theory of Software Reliability	23434094
+13	J.K.	Rowling	3	Penguin Random House	1	1991	98	Harry Potter and the Philosopher's Stone	40941379
+13	J.K.	Rowling	3	Penguin Random House	1	1992	98	Harry Potter and the Chamber of Secrets	50941369
+13	J.K.	Rowling	3	Penguin Random House	1	1993	90	Harry Potter and the Prisoner of Azkaban	40141369
+13	J.K.	Rowling	3	Penguin Random House	1	1994	96	Harry Potter and the Order of the Phoenix	40461369
+13	J.K.	Rowling	3	Penguin Random House	1	1995	95	Harry Potter and the Half-Blood Prince	40941999
+14	Charles	Jenney Jr.	4	Hachette Livre	1	1800	13	Jenney's Second Year Latin	59283434
+15	Landa	Kiefer	4	Hachette Livre	1	2001	10	Physics: The Physical Setting	95061002
+16	Herman	Melville	5	Macmillan Publishers	1	1960	21	Moby Dick	40981369
+17	Harper	Lee	4	Hachette Livre	1	1967	22	Go Set A Watchman	51183434
+17	Harper	Lee	4	Hachette Livre	1	1955	12	To Kill A Mockingbird	95765602
+18	Edith	Hamilton	5	Macmillan Publishers	1	2000	11	Mythology	40091369
+19	George	Orwell	5	Macmillan Publishers	1	1876	8	Animal Farm	10983434
+20	Brinkley	Smith	5	Macmillan Publishers	1	1999	19	American History: A Survey	65761002
+21	Kristina	Chodorow	6	Simon & Schuster	1	2010	26	MongoDB: The Definitive Guide	63763350
+22	Michael	Dirolf	6	Simon & Schuster	1	2010	26	MongoDB: The Definitive Guide	63763350
+23	Kyle	Banker	7	Arxis	2	2021	45	MongoDB in Action	63060350
+24	Janet	Li	2	Oxford	2	1990	2	JavaScript: The Good Parts	50006999
+25	John	Black	2	Oxford	2	1990	2	JavaScript: The Good Parts	50006999
+26	Mike	Brown	8	Pearson Education	2	2018	109	JavaScript Web Applications	70008898
+27	Mike	Davis	8	Pearson Education	2	2018	109	JavaScript Web Applications	70008898
+28	Stoyan	Stefanov	9	AAC	5	2019	89	JavaScript Patterns	71208898
+29	Tom	Williams	10	Cengage Learning	1	2000	45	High Sierra	60001000
+30	Bryan	Zhang	11	HarperCollins. 	1	2000	15	SQL in Action	80322200
+31	Tom	Smith	11	HarperCollins. 	1	1990	20	SQL: An Introduction	90669000
+32	R.A.	Fisher	12	John Wiley	2	1936	17	The use of multiple measurements in taxonomic problems	78444294
+33	Robert	Times	13	The Brothers Karamazov	2	1976	80	Medicine: Power History	71208064
+34	Sally	Wu	14	Cambridge	1	2008	45	Sed One-Liners Explained	52983434
+35	Christ	Johnson	15	Scholastic	3	2015	48	Fashion is Nothing	60201000
+36	Zack	Williams	16	graphviz	2	2020	46	My Awesome Book	23894094
